@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
-  const logo = "/images/expo-logo-wh.png";
+  const logo = "/images/Expo-logo-wh.png";
   
 
   const classes = useStyles();
@@ -25,13 +25,7 @@ function Header() {
     <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
-      <img
-        src={logo}
-        width="85"
-        height="30"
-        className="d-inline-block align-top"
-        alt="Expo logo"
-      />
+      {<img src={ logo } alt="expo-logo"/>}
       </Toolbar>
     </AppBar>
   </div>
