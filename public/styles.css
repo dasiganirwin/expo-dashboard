@@ -1,0 +1,26 @@
+.body {
+  width: 100%;
+  background-color: burlywood;
+}
+
+.mainContainer {
+}
+
+.modifiedButtons {
+  border-radius: 0px;
+  width: 200px;
+}
+
+.navContainer {
+  background-color: #ecf0f1;
+  width: 20vw;
+  height: 100vh;
+  float: left;
+}
+
+.contentsContainer {
+  background-color: #2980b9;
+  width: 78vmax;
+  height: 100vh;
+  float: right;
+}
