@@ -7,9 +7,9 @@ import {
   useAccordionToggle
 } from "react-bootstrap";
 
-import { Link, Switch, BrowserRouter as Router, Route } from "react-router-dom";
-import AddExhibitor from "../pages/AddExhibitor";
-import Overview from "../pages/Overview";
+import { useHistory } from 'react-router-dom';
+
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 function CustomToggle({ children, eventKey }) {
@@ -29,12 +29,16 @@ function CustomToggle({ children, eventKey }) {
 }
 
 function SideNavigation() {
+  const history = useHistory();
+
+  const handleClick = () => history.push('/addexhibitor');
+
   return (
     <Router>
       <Accordion defaultActiveKey="0">
         <Card>
           <Card.Header>
-            <CustomToggle eventKey="0"><Link to='/'>Overview</Link></CustomToggle>
+            <CustomToggle eventKey="0">Overview</CustomToggle>
           </Card.Header>
         </Card>
         <Card>
@@ -44,7 +48,7 @@ function SideNavigation() {
           <Accordion.Collapse eventKey="1">
             <Card.Body>
               <ButtonGroup vertical>
-                <Button><Link to="addexhibitor">Add New Exhibitor</Link></Button>
+                <Button onClick={handleClick}>Add New Exhibitor</Button>
                 <Button>Add Products</Button>
                 <Button>View list of Exhibitors</Button>
               </ButtonGroup>
@@ -76,10 +80,6 @@ function SideNavigation() {
               </ButtonGroup>
             </Card.Body>
           </Accordion.Collapse>
-          <Switch>
-            <Route exact path="/" component={ Overview}  />
-            <Route path="/addexhibitor" component={ AddExhibitor } />
-          </Switch>
         </Card>
       </Accordion>
     </Router>

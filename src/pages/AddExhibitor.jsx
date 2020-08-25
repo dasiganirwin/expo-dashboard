@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddExhibitor (){
+function AddExhibitor(Props) {
   return(
     <div>
       <h1>Ex</h1> 
@@ -9,3 +9,4 @@ function AddExhibitor (){
 }
 
 export default AddExhibitor;
+
