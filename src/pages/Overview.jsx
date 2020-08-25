@@ -9,7 +9,9 @@ function Overview(Props) {
       <div className="navContainer">
         <SideNavigation />
       </div>
-      <div className="contentsContainer"></div>
+      <div className="contentsContainer">
+        Overview
+      </div>
     </div>
   );
 }

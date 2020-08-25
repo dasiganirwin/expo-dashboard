@@ -3,8 +3,6 @@
   background-color: burlywood;
 }
 
-.mainContainer {
-}
 
 .modifiedButtons {
   border-radius: 0px;
@@ -19,8 +17,8 @@
 }
 
 .contentsContainer {
-  background-color: #2980b9;
-  width: 78vmax;
+  background-color: #f5f6fa;
+  width: 79.5vmax;
   height: 100vh;
   float: right;
 }

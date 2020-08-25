@@ -13,7 +13,11 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  AppBar: {
+    backgroundcolor : '#2E3B55',
+  }
 }));
+
 
 function Header() {
   const logo = "/images/Expo-logo-wh.png";
@@ -23,12 +27,12 @@ function Header() {
 
   return (
     <div className={classes.root}>
-    <AppBar position="static">
-      <Toolbar>
-      {<img src={ logo } alt="expo-logo"/>}
-      </Toolbar>
-    </AppBar>
-  </div>
+      <AppBar position="static">
+        <Toolbar>
+        {<img src={ logo } alt="expo-logo"/>}
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
 
