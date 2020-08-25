@@ -1,6 +1,5 @@
 import React from "react";
 
-import SignIn from "../SignIn";
 import Overview from "../pages/Overview";
 
 function App() {

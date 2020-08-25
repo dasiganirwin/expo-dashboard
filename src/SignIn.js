@@ -12,8 +12,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import Copyright from "../src/components/Copyright";
-import Overview from "../src/pages/Overview";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,7 +37,6 @@ export default function SignIn() {
   const classes = useStyles();
 
   return (
-    <Router>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -101,6 +98,5 @@ export default function SignIn() {
           <Copyright />
         </Box>
       </Container>
-    </Router>
   );
 }
