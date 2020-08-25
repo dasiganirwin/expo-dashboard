@@ -6,7 +6,11 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+
 
 
 const StyledButton = withStyles({
@@ -64,17 +68,19 @@ function SideNavigation() {
         <Typography className={classes.heading}>Exhibitor</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <ButtonGroup orientation="vertical" variant="text">
-          <Button size="Medium" className={classes.margin}>
-          Add New Exhibitor
-          </Button>
-          <Button size="Medium" className={classes.margin}>
-          Add Products
-          </Button>
-          <Button size="Medium" className={classes.margin}>
-          View list Exhibitor
-          </Button>
-        </ButtonGroup>
+        <List component="nav" className={classes.root} aria-label="mailbox folders">
+          <ListItem button>
+            <ListItemText primary="Add Exhibitor" />
+          </ListItem>
+          <Divider />
+          <ListItem button divider>
+            <ListItemText primary="Add Products" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="Add Products" />
+          </ListItem>
+          <Divider light />
+        </List>
       </AccordionDetails>
     </Accordion>
     <Accordion>
@@ -86,17 +92,16 @@ function SideNavigation() {
         <Typography className={classes.heading}>Events</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <ButtonGroup orientation="vertical" variant="text">
-          <Button size="Medium" className={classes.margin}>
-            Add New Exhibitor
-          </Button>
-          <Button size="Medium" className={classes.margin}>
-            Add Products
-          </Button>
-          <Button size="Medium" className={classes.margin}>
-            View list Exhibitor
-          </Button>
-        </ButtonGroup>
+      <List component="nav" className={classes.root} aria-label="mailbox folders">
+        <ListItem button>
+        <ListItemText primary="Add Event" />
+        </ListItem>
+        <Divider />
+        <ListItem button divider>
+        <ListItemText primary="View list of Events" />
+        </ListItem>
+        <Divider light />
+        </List>
       </AccordionDetails>
     </Accordion>
     <Accordion>
@@ -108,17 +113,16 @@ function SideNavigation() {
       <Typography className={classes.heading}>User Information</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <ButtonGroup orientation="vertical" variant="text">
-          <Button size="Medium" className={classes.margin}>
-            Add New Exhibitor
-          </Button>
-          <Button size="Medium" className={classes.margin}>
-            Add Products
-          </Button>
-          <Button size="Medium" className={classes.margin}>
-            View list Exhibitor
-          </Button>
-        </ButtonGroup>
+        <List component="nav" className={classes.root} aria-label="mailbox folders">
+          <ListItem button>
+          <ListItemText primary="Add Event" />
+          </ListItem>
+          <Divider />
+          <ListItem button divider>
+          <ListItemText primary="View list of Events" />
+          </ListItem>
+          <Divider light />
+        </List>
       </AccordionDetails>
     </Accordion>
   </div>
