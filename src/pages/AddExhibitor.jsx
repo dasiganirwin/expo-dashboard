@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddExhibitor() {
+function AddExhibitor(Props) {
   return(
     <div>
       <h1>Add new exhibitor</h1> 

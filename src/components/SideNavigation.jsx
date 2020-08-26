@@ -20,7 +20,7 @@ const StyledButton = withStyles({
     border: 0,
     color: 'white',
     height: 70,
-    width:265,
+    width:220,
     padding: '0 30px'
   },
   label: {
@@ -51,13 +51,10 @@ function SideNavigation() {
     <div className={classes.root}>
     <Accordion>
       <StyledButton>
-        <Button size="Large" className={classes.margin}>
+        <Button size="medium" className={classes.margin}>
           Overview
         </Button>
       </StyledButton>
-     {/* <AccordionSummary>
-        <Typography className={classes.heading}>Overview</Typography>
-     </AccordionSummary>*/}
     </Accordion>
     <Accordion>
       <AccordionSummary
