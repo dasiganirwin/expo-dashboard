@@ -3,14 +3,14 @@ import SideNavigation from "../components/SideNavigation";
 import Header from "../components/Header";
 
 
-function AddExhibitor() {
+function AddProduct() {
     return (
         <div className="mainContainer">
             <div className="header">
                 <Header />
             </div>
             <div className="contentsContainer">
-                <h1>Add Exhibitor</h1>
+                <h1>Add Product</h1>
             </div>
             <div className="navContainer">
                 <SideNavigation />
@@ -19,4 +19,4 @@ function AddExhibitor() {
         );
     }
 
-export default AddExhibitor;
+export default AddProduct;

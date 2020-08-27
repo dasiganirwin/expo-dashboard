@@ -3,20 +3,20 @@ import SideNavigation from "../components/SideNavigation";
 import Header from "../components/Header";
 
 
-function AddExhibitor() {
+function ListofExhibitor() {
     return (
         <div className="mainContainer">
             <div className="header">
                 <Header />
             </div>
             <div className="contentsContainer">
-                <h1>Add Exhibitor</h1>
+                <h1>List of Exhibitors</h1>
             </div>
             <div className="navContainer">
                 <SideNavigation />
-            </div>
+            </div>  
         </div>
         );
     }
 
-export default AddExhibitor;
+export default ListofExhibitor;

@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+import {Link } from 'react-router-dom';
 
 
 const StyledButton = withStyles({
@@ -51,9 +52,11 @@ function SideNavigation() {
     <div className={classes.root}>
     <Accordion>
       <StyledButton>
-        <Button size="medium" className={classes.margin}>
-          Overview
-        </Button>
+        <Link to="/dashboard">
+          <Button size="medium" className={classes.margin}>
+            Overview
+          </Button>
+        </Link>
       </StyledButton>
     </Accordion>
     <Accordion>
@@ -66,16 +69,22 @@ function SideNavigation() {
       </AccordionSummary>
       <AccordionDetails>
         <List component="nav" className={classes.root} aria-label="mailbox folders">
-          <ListItem button>
-            <ListItemText primary="Add Exhibitor" />
-          </ListItem>
+          <Link to="/addexhibitor">
+            <ListItem button>
+              <ListItemText primary="Add Exhibitor" />
+            </ListItem>
+          </Link>
           <Divider />
+          <Link to="/addproduct">
           <ListItem button divider>
             <ListItemText primary="Add Products" />
           </ListItem>
+          </Link>
+          <Link to="/listexhibitors">
           <ListItem button>
-            <ListItemText primary="Add Products" />
+            <ListItemText primary="List of Exhibitors" />
           </ListItem>
+          </Link>
           <Divider light />
         </List>
       </AccordionDetails>
@@ -122,6 +131,7 @@ function SideNavigation() {
         </List>
       </AccordionDetails>
     </Accordion>
+    
   </div>
   );
 }
