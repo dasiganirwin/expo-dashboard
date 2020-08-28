@@ -27,10 +27,13 @@
 }
 
 .contentsContainer {
+  position: relative;
   background-color: #f0f2f5;
   width: 78.5vmax;
   height: 100vh;
   float: right;
+  height: 700px;
+  overflow: auto;
 
 }
 
@@ -73,4 +76,13 @@ h1 {
 .totalBrands {
   float: right;
   padding-right: 12%;
+}
+
+.saveButton {
+  margin: 0;
+  position: absolute;
+  top: 158%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

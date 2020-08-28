@@ -2,14 +2,40 @@ import React from "react";
 import SideNavigation from "../components/SideNavigation";
 import Header from "../components/Header";
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { Paper, Grid } from '@material-ui/core';
-import MaterialTable from 'material-table';
+import TextField from '@material-ui/core/TextField';
+import Icon from '@material-ui/core/Icon';
+import SaveIcon from '@material-ui/icons/Save';
+import Button from '@material-ui/core/Button';
+import { createClassExpression } from "typescript";
+
+
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+          margin: theme.spacing(1),
+          width: '30ch',
+        },
+      },
+    twoColumnTextfield: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '44ch',
+            },
+        },
+    fullWidthTextfield: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '90ch',
+            },
+        },
+    threeColumnTextfield: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '28ch',
+            },
+        },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
@@ -26,16 +52,21 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         textAlign: 'center',
     },
-    paperEvent: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        height: '110px',
+    paperDetails: {
+        padding: theme.spacing(5),
+        textAlign: 'left',
+        height: '1100px',
     },
     paperExhibitorBrand: {
         padding: theme.spacing(2),
         textAlign: 'center',
         height: '110px',
-    }
+    },
+    button: {
+        margin: theme.spacing(6),
+        width: '28ch'
+      },
+
   }));
   
 
@@ -79,8 +110,62 @@ function AddExhibitor() {
                     </Grid>
                     <Grid item xs={12} md={12}>
                         <div>
-                            <Paper className={classes.paperEvent}>
-                                
+                            <Paper className={classes.paperDetails}>
+                                <div className="leftTextFields">
+                                    <form className={classes.root} noValidate autoComplete="off">
+                                        <TextField id="outlined-basic" label="Exhibitor No." variant="outlined" />
+                                    </form>
+                                </div>
+                                <div className="rightTextFields">
+                                    <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
+                                        <TextField id="outlined-basic" label="First Name" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Email Address" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Contact No." variant="outlined" />
+                                    </form>
+                                    <form className={classes.fullWidthTextfield} noValidate autoComplete="off">
+                                        <TextField id="outlined-basic" label="Exhibitor Name" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Address Line 1" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Address Line 1" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Contact No." variant="outlined" />
+                                    </form>
+                                    <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
+                                        <TextField id="outlined-basic" label="City" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Zip Code" variant="outlined" />
+                                    </form>
+                                    <form className={classes.threeColumnTextfield} noValidate autoComplete="off">
+                                        <TextField id="outlined-basic" label="Password" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Company Logo (URL)" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Cover Photos (URL)" variant="outlined" />
+                                    </form>
+                                    <form className={classes.fullWidthTextfield} noValidate autoComplete="off">
+                                        <TextField
+                                        id="outlined-textarea"
+                                        label="Company Description"
+                                        placeholder="Company Description"
+                                        multiline
+                                        rows={4}
+                                        variant="outlined"
+                                        />
+                                    </form>
+                                    <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
+                                        <TextField id="outlined-basic" label="Promotional Video Title 1" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Video (URL)" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Promotional Video Title 2" variant="outlined" />
+                                        <TextField id="outlined-basic" label="Video (URL)" variant="outlined" />
+                                    </form>
+                                    <div className="saveButton">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        className={classes.button}
+                                        startIcon={<SaveIcon />}
+                                        >
+                                        Save
+                                        </Button>
+                                    </div>
+                                </div>
                             </Paper>     
                         </div>
                     </Grid>
