@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 
-function AddExhibitor() {
+function template() {
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
     const [state, setState] = React.useState({
@@ -75,14 +75,21 @@ function AddExhibitor() {
             <div className="contentsContainer" >
                 <Grid container className={classes.grid} spacing={2}>
                     <Grid item xs={10} md={12}>
-                        <Paper className={classes.paper}>Add Exhibitor</Paper>
+                        <Paper className={classes.paper}>Template</Paper>
                     </Grid>
-                    <Grid item xs={12} md={12}>
+                    <Grid item xs={6} md={6}>
                         <div>
                             <Paper className={classes.paperEvent}>
                                 
                             </Paper>     
                         </div>
+                    </Grid>
+                    <Grid item xs={6} md={6}>
+                        <Paper className={classes.paperExhibitorBrand}> 
+                          
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} md={12}>
                     </Grid>
                 </Grid>
             </div>
@@ -93,4 +100,4 @@ function AddExhibitor() {
         );
     }
 
-export default AddExhibitor;
+export default Template;
