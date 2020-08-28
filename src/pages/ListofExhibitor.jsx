@@ -47,28 +47,26 @@ function ListifExhibitor() {
         columns: [
           { title: 'Exhibitor No.', field: 'Exhibitorno' },
           { title: 'Exhibitor', field: 'exhibitor' },
-          { title: 'Product Model', field: 'productmodel' },
-          { title: 'Product Brand', field: 'productbrand' },
-          { title: 'Video URL', field: 'videourl' },
-          { title: 'Image URL', field: 'imageurl' },
+          { title: 'Major', field: 'major', lookup: { 1: 'Yes', 2: 'No'}},
+          { title: 'Minor', field: 'minor', lookup: { 1: 'Yes', 2: 'No'}},
+          { title: 'General', field: 'general', lookup: { 1: 'Yes', 2: 'No'}},
+         
           
         ],
         data: [
           { Exhibitorno: '111', 
             exhibitor: 'Makita' ,
-            productdescription: 'Descrition here',
-            productbrand: 'Irwin',
-            videos: 'url here',
-            images: 'url here'
+            major: 1,
+            minor: 2,
+            general: 1,
         },
-          {
-            productname: 'Descrition here',
-            productmodel: '2233',
-            productdescription: 'Descrition here',
-            productbrand: 'Irwin',
-            videos: 2,
-            images: 10,
-          },
+        { 
+            Exhibitorno: '2222', 
+            exhibitor: 'Black and Decker' ,
+            major: 2,
+            minor: 1,
+            general: 1,
+        },
         ],
       });
     

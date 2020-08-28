@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         height: '110px',
-        width: '1ch',
     },
     paperExhibitorBrand: {
         padding: theme.spacing(2),
