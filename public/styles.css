@@ -86,3 +86,21 @@ h1 {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+.saveButtonEvent {
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.saveButtonUser{
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
