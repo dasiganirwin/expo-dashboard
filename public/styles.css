@@ -14,14 +14,10 @@
   }
 }
 
-.mainContainer {
-  
-}
-
 .navContainer {
 
   background-color: #ecf0f1;
-  width: 20vmax;
+  max-width: 20vmax;
   height: 100vh;
   
 }

@@ -21,7 +21,7 @@ const StyledButton = withStyles({
     border: 0,
     color: 'white',
     height: 70,
-    width:220,
+    width: "100%",
     padding: '0 30px'
   },
   label: {
@@ -53,7 +53,7 @@ function SideNavigation() {
     <Accordion>
       <StyledButton>
         <Link to="/dashboard">
-          <Button size="medium" className={classes.margin}>
+          <Button size="medium" >
             Overview
           </Button>
         </Link>
@@ -105,7 +105,6 @@ function SideNavigation() {
           </ListItem>
         </Link>
         <Divider />
- 
       </List>
       </AccordionDetails>
     </Accordion>
