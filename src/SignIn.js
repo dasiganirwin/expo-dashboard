@@ -19,8 +19,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://goexpoph.com/">
+        Expo PH
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -55,12 +55,12 @@ export default function SignIn() {
 
   const handleClick = () => history.push('/dashboard');
 
+  const logoimg = './images/expo-png.png'
+
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+          <img src={logoimg}/>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -87,10 +87,11 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
+          {/*}
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          />*/}
           <Button
             type="submit"
             fullWidth
@@ -107,11 +108,11 @@ export default function SignIn() {
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item>
+            {/*<Grid item>
               <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
+            </Grid>*/}
           </Grid>
         </form>
       </div>
