@@ -102,77 +102,83 @@ function AddExhibitor() {
             <div className="header">
                 <Header />
             </div>
-            <div className="contentsContainer" >
-                <Grid container className={classes.grid} spacing={2}>
-                    <Grid item xs={10} md={12}>
-                        <Paper className={classes.paper}>Add Exhibitor</Paper>
-                    </Grid>
-                    <Grid item xs={12} md={12}>
-                        <div>
-                            <Paper className={classes.paperDetails}>
-                                <div className="leftTextFields">
-                                    <form className={classes.root} noValidate autoComplete="off">
-                                        <TextField id="outlined-basic" label="Exhibitor No." variant="outlined" />
-                                    </form>
-                                </div>
-                                <div className="rightTextFields">
-                                    <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
-                                        <TextField id="outlined-basic" label="First Name" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Email Address" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Contact No." variant="outlined" />
-                                    </form>
-                                    <form className={classes.fullWidthTextfield} noValidate autoComplete="off">
-                                        <TextField id="outlined-basic" label="Exhibitor Name" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Address Line 1" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Address Line 1" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Contact No." variant="outlined" />
-                                    </form>
-                                    <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
-                                        <TextField id="outlined-basic" label="City" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Zip Code" variant="outlined" />
-                                    </form>
-                                    <form className={classes.threeColumnTextfield} noValidate autoComplete="off">
-                                        <TextField id="outlined-basic" label="Password" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Company Logo (URL)" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Cover Photos (URL)" variant="outlined" />
-                                    </form>
-                                    <form className={classes.fullWidthTextfield} noValidate autoComplete="off">
-                                        <TextField
-                                        id="outlined-textarea"
-                                        label="Company Description"
-                                        placeholder="Company Description"
-                                        multiline
-                                        rows={4}
-                                        variant="outlined"
-                                        />
-                                    </form>
-                                    <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
-                                        <TextField id="outlined-basic" label="Promotional Video Title 1" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Video (URL)" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Promotional Video Title 2" variant="outlined" />
-                                        <TextField id="outlined-basic" label="Video (URL)" variant="outlined" />
-                                    </form>
-                                    <div className="saveButton">
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        size="large"
-                                        className={classes.button}
-                                        startIcon={<SaveIcon />}
-                                        >
-                                        Save
-                                        </Button>
-                                    </div>
-                                </div>
-                            </Paper>     
-                        </div>
-                    </Grid>
+            <Grid container className={classes.grid} spacing={2}>
+                <Grid item xs={3} md={3}>
+                    <div className="navContainer">
+                        <SideNavigation />
+                    </div>  
                 </Grid>
-            </div>
-            <div className="navContainer">
-                <SideNavigation />
-            </div>  
+                <Grid item xs={9} md={9}>
+                    <div className="contentsContainer" >
+                        <Grid container className={classes.grid} spacing={2}>
+                            <Grid item xs={10} md={12}>
+                                <Paper className={classes.paper}>Add Exhibitor</Paper>
+                            </Grid>
+                            <Grid item xs={12} md={12}>
+                                <div>
+                                    <Paper className={classes.paperDetails}>
+                                        <div className="leftTextFields">
+                                            <form className={classes.root} noValidate autoComplete="off">
+                                                <TextField id="outlined-basic" label="Exhibitor No." variant="outlined" />
+                                            </form>
+                                        </div>
+                                        <div className="rightTextFields">
+                                            <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
+                                                <TextField id="outlined-basic" label="First Name" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Email Address" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Contact No." variant="outlined" />
+                                            </form>
+                                            <form className={classes.fullWidthTextfield} noValidate autoComplete="off">
+                                                <TextField id="outlined-basic" label="Exhibitor Name" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Address Line 1" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Address Line 1" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Contact No." variant="outlined" />
+                                            </form>
+                                            <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
+                                                <TextField id="outlined-basic" label="City" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Zip Code" variant="outlined" />
+                                            </form>
+                                            <form className={classes.threeColumnTextfield} noValidate autoComplete="off">
+                                                <TextField id="outlined-basic" label="Password" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Company Logo (URL)" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Cover Photos (URL)" variant="outlined" />
+                                            </form>
+                                            <form className={classes.fullWidthTextfield} noValidate autoComplete="off">
+                                                <TextField
+                                                id="outlined-textarea"
+                                                label="Company Description"
+                                                placeholder="Company Description"
+                                                multiline
+                                                rows={4}
+                                                variant="outlined"
+                                                />
+                                            </form>
+                                            <form className={classes.twoColumnTextfield} noValidate autoComplete="off">
+                                                <TextField id="outlined-basic" label="Promotional Video Title 1" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Video (URL)" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Promotional Video Title 2" variant="outlined" />
+                                                <TextField id="outlined-basic" label="Video (URL)" variant="outlined" />
+                                            </form>
+                                            <div className="saveButton">
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                size="large"
+                                                className={classes.button}
+                                                startIcon={<SaveIcon />}
+                                                >
+                                                Save
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </Paper>     
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Grid>
+            </Grid>
         </div>
         );
     }
