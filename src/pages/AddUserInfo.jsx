@@ -2,12 +2,7 @@ import React from "react";
 import SideNavigation from "../components/SideNavigation";
 import Header from "../components/Header";
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { Paper, Grid } from '@material-ui/core';
-import MaterialTable from 'material-table';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
@@ -73,12 +68,6 @@ const useStyles = makeStyles((theme) => ({
 
 function AddUserInfo() {
     const classes = useStyles();
-    const [expoevent, setExpoevent] = React.useState('');
-    
-  
-    const handleChange = (event) => {
-        setExpoevent(event.target.value);
-    };
     return (
         <div className="mainContainer">
             <div className="header">

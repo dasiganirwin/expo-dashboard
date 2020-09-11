@@ -8,7 +8,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
