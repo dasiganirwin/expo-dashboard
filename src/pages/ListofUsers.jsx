@@ -76,19 +76,25 @@ function ListofUsers() {
             <div className="header">
                 <Header />
             </div>
-            <div className="contentsContainer" >
-                <Grid container className={classes.grid} spacing={2}>
-                    <Grid item xs={10} md={12}>
-                        <Paper className={classes.paper}>List of Users</Paper>
-                    </Grid>
-                    <Grid item xs={12} md={12}>
-                        <DashboardTable col={comonscol} data={data} />
-                    </Grid>
+            <Grid container className={classes.grid} spacing={2}>
+                <Grid item xs={3} md={3}>
+                    <div className="navContainer">
+                        <SideNavigation />
+                    </div>
                 </Grid>
-            </div>
-            <div className="navContainer">
-                <SideNavigation />
-            </div>  
+                <Grid item xs={9} md={9}>
+                    <div className="contentsContainer" >
+                        <Grid container className={classes.grid} spacing={2}>
+                            <Grid item xs={10} md={12}>
+                                <Paper className={classes.paper}>List of Users</Paper>
+                            </Grid>
+                            <Grid item xs={12} md={12}>
+                                <DashboardTable col={comonscol} data={data} />
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Grid>
+            </Grid> 
         </div>
         );
     }

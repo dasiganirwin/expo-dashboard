@@ -105,23 +105,29 @@ function AddEvent() {
             <div className="header">
                 <Header />
             </div>
-            <div className="contentsContainer" >
                 <Grid container className={classes.grid} spacing={2}>
-                    <Grid item xs={10} md={12}>
-                        <Paper className={classes.paper}>Add Event</Paper>
+                    <Grid item xs={3} md={3}>
+                        <div className="navContainer">
+                            <SideNavigation />
+                        </div>  
                     </Grid>
-                    <Grid item xs={12} md={12}>
-                        <div>
-                            <Paper className={classes.paperDetails}>
-                                <DashboardTable col={comonscol} data={data} />
-                            </Paper>     
+                    <Grid item xs={9} md={9}>
+                        <div className="contentsContainer" >
+                            <Grid container className={classes.grid} spacing={2}>
+                                <Grid item xs={10} md={12}>
+                                    <Paper className={classes.paper}>Add Event</Paper>
+                                </Grid>
+                                <Grid item xs={12} md={12}>
+                                    <div>
+                                        <Paper className={classes.paperDetails}>
+                                            <DashboardTable col={comonscol} data={data} />
+                                        </Paper>     
+                                    </div>
+                                </Grid>
+                            </Grid>
                         </div>
                     </Grid>
                 </Grid>
-            </div>
-            <div className="navContainer">
-                <SideNavigation />
-            </div>  
         </div>
         );
     }

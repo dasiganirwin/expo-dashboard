@@ -49,6 +49,8 @@ const comonscol = [
 
 function Dashboard() {
     const [data, setData] = React.useState([])
+   
+
 
     React.useEffect(() => {
         fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/exhibitor/")
@@ -57,7 +59,6 @@ function Dashboard() {
           .then(json => console.log(json))
           .catch(err => console.log(err.message))
       }, [])
-
 
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
@@ -81,8 +82,7 @@ function Dashboard() {
                     <div className="contentsContainer" >
                         <Grid container className={classes.grid} spacing={2}>
                             <Grid item xs={10} md={12}>
-    <Paper className={classes.paper}>Dashboard</Paper>
-                                
+                                <Paper className={classes.paper}>Dashboard</Paper>  
                             </Grid>
                             <Grid item xs={6} md={6}>
                                 <div>

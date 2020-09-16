@@ -71,61 +71,26 @@ function ListifExhibitor() {
             <div className="header">
                 <Header />
             </div>
-            <div className="contentsContainer" >
                 <Grid container className={classes.grid} spacing={2}>
-                    <Grid item xs={10} md={12}>
-                        <Paper className={classes.paper}>List of Exhibitor</Paper>
+                    <Grid item xs={3} md={3}>
+                        <div className="navContainer">
+                            <SideNavigation />
+                        </div>  
                     </Grid>
-                    <Grid item xs={3} md={3}/>
-                    <Grid item xs={6} md={6}>
-                        <div>
-                         {/*<Paper className={classes.paperEvent}>
-                               <div className="event">
-                                    <FormControl variant="outlined" className={classes.formControl}>
-                                        <InputLabel id="demo-simple-select-outlined-label">Event</InputLabel>
-                                        <Select
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={expoevent}
-                                        onChange={handleChange}
-                                        label="Age"
-                                        >
-                                        <MenuItem value={10}>Builvex</MenuItem>
-                                        <MenuItem value={20}>Health Pinoy</MenuItem>
-                                        <MenuItem value={30}>Marry Me</MenuItem>
-                                        <MenuItem value={30}>Pili pinas</MenuItem>
-                                        </Select>
-                                    </FormControl> 
-                                </div>
-                                <div className="year">
-                                <FormControl variant="outlined" className={classes.formControl}>
-                                        <InputLabel id="demo-simple-select-outlined-label">Year</InputLabel>
-                                        <Select
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={expoevent}
-                                        onChange={handleChange}
-                                        label="Age"
-                                        >
-                                        <MenuItem value={10}>2020</MenuItem>
-                                        <MenuItem value={20}>2021</MenuItem>
-                                        <MenuItem value={30}>2022</MenuItem>
-                                        <MenuItem value={30}>2023</MenuItem>
-                                        </Select>
-                                </FormControl> 
-                                </div> 
-                            </Paper> */}  
+                    <Grid item xs={9} md={9}>
+                        <div className="contentsContainer" >
+                            <Grid container className={classes.grid} spacing={2}>
+                                <Grid item xs={10} md={12}>
+                                    
+                                    <Paper className={classes.paper}>List of Exhibitor</Paper>
+                                </Grid>
+                                <Grid item xs={12} md={12}>
+                                    <DashboardTable col={comonscol} data={data} />
+                                </Grid>
+                            </Grid>
                         </div>
                     </Grid>
-                    <Grid item xs={3} md={3}/>
-                    <Grid item xs={12} md={12}>
-                        <DashboardTable col={comonscol} data={data} />
-                    </Grid>
                 </Grid>
-            </div>
-            <div className="navContainer">
-                <SideNavigation />
-            </div>  
         </div>
         );
     }
