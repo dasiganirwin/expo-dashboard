@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -7,22 +7,29 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
+const accessToken = '306e2c2a79e9042d88f29404c76dae6bfae1a4b0';
+const apiURL = 'https://expo-ph.herokuapp.com/api/';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://goexpoph.com/">
-        Expo PH
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const authAxios = axios.create({
+  baseURL: apiURL,
+  headers: {
+    authorization: `Bearer ${accessToken}`
+  } 
+})
+
+axios.interceptors.request.use(
+  config => {
+    config.headers.authorization = `Bearer ${accessToken}`;
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+)
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,6 +53,18 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignIn() {
+  const [users, setUsers ] = useState([]);
+  const [requestError, setRequestError] = useState();
+
+  const fetchData = useCallback(async () => {
+    try {
+      // fetch and set users
+      const result = await authAxios.get(`/login `);
+      setUsers(result.data)
+    } catch (err) {
+      setRequestError(err.message);
+    }
+  });
   
   const classes = useStyles();
 
@@ -120,5 +139,19 @@ export default function SignIn() {
         <Copyright />
       </Box>
     </Container>
+  );
+}
+
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://goexpoph.com/">
+        Expo PH
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }

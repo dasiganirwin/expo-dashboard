@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import TextField from '@material-ui/core/TextField';
+import DashboardTable from "../components/DashboardTable";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,39 +42,30 @@ const useStyles = makeStyles((theme) => ({
             },
         },
   }));
+
+const comonscol = [
+    { title: "Product Name", field: "name" },
+    { title: "Product Description", field: "description" },
+    { title: "Product Model", field: "model" },
+    { title: "Product Brand", field: "" },
+    { title: "Cover Image URL", field: "cover_images" },
+    { title: "Thumbnail URL", field: "thumbnail_url" },
+    ];
   
 
 function AddProduct() {
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
-    const [state, setState] = React.useState({
-        columns: [
-          { title: 'Product Name', field: 'productname' },
-          { title: 'Product Description', field: 'productdescription' },
-          { title: 'Product Model', field: 'productmodel' },
-          { title: 'Product Brand', field: 'productbrand' },
-          { title: 'Video URL', field: 'videourl' },
-          { title: 'Image URL', field: 'imageurl' },
-          
-        ],
-        data: [
-          { productname: 'Drill', 
-            productmodel: '2233' ,
-            productdescription: 'Descrition here',
-            productbrand: 'Irwin',
-            videos: 'url here',
-            images: 'url here'
-        },
-          {
-            productname: 'Descrition here',
-            productmodel: '2233',
-            productdescription: 'Descrition here',
-            productbrand: 'Irwin',
-            videos: 2,
-            images: 10,
-          },
-        ],
-      });
+
+    const [data, setData] = React.useState([])
+    
+    React.useEffect(() => {
+        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/product/")
+          .then(res => res.json())
+          .then(res => setData(res))
+          .then(json => console.log(json))
+          .catch(err => console.log(err.message))
+      }, [])
   
     const handleChange = (event) => {
         setExpoevent(event.target.value);
@@ -103,48 +95,7 @@ function AddProduct() {
                         </div>
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <MaterialTable
-                            title="Product Details"
-                            columns={state.columns}
-                            data={state.data}
-                            editable={{
-                                onRowAdd: (newData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.push(newData);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                                onRowUpdate: (newData, oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    if (oldData) {
-                                        setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data[data.indexOf(oldData)] = newData;
-                                        return { ...prevState, data };
-                                        });
-                                    }
-                                    }, 600);
-                                }),
-                                onRowDelete: (oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.splice(data.indexOf(oldData), 1);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                            }}
-                        />
+                        <DashboardTable col={comonscol} data={data} />
                     </Grid>
                 </Grid>
             </div>

@@ -17,11 +17,9 @@ function App() {
         <Switch>
             <Route exact path="/" component={ SignIn }  />
             <Route path="/dashboard" component={ Dashboard } />
-            <Route path="/addexhibitor" component={ AddExhibitor } />
             <Route path="/addproduct" component={ AddProduct } />
             <Route path="/listexhibitors" component={ ListofExhibitor } />
             <Route path="/addevent" component={ AddEvent } />
-            <Route path="/adduserinfo" component={ AddUserInfo } />
             <Route path="/listofusers" component={ ListofUsers } />
         </Switch>
     </Router>

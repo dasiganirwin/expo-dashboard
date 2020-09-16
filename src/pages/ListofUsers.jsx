@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import TextField from '@material-ui/core/TextField';
+import DashboardTable from "../components/DashboardTable";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,23 +44,29 @@ const useStyles = makeStyles((theme) => ({
         },
   }));
   
+const comonscol = [
+    { title: "Email Address", field: "email" },
+    { title: "Username", field: "user_name" },
+    { title: "First Name", field: "first_name" },
+    { title: "Last Name", field: "last_name" },
+    { title: "Company", field: "company" },
+    { title: "Position", field: "position" },
+    { title: "Company Address", field: "company_address" },
+    ];
 
 function ListofUsers() {
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
-    const [state, setState] = React.useState({
-        columns: [
-          { title: 'User No.', field: 'userno' },
-          { title: 'Name', field: 'name' },
-          { title: 'Company', field: 'Company' }      
-        ],
-        data: [
-          { userno: '0001', 
-            name: 'Irwin Dasigan' ,
-            Company: 'Expo Ph'
-        }
-        ],
-      });
+
+    const [data, setData] = React.useState([])
+
+    React.useEffect(() => {
+        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/user/")
+          .then(res => res.json())
+          .then(res => setData(res))
+          .then(json => console.log(json))
+          .catch(err => console.log(err.message))
+      }, [])
   
     const handleChange = (event) => {
         setExpoevent(event.target.value);
@@ -74,37 +82,7 @@ function ListofUsers() {
                         <Paper className={classes.paper}>List of Users</Paper>
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <MaterialTable
-                            title="Product Details"
-                            columns={state.columns}
-                            data={state.data}
-                            editable={{
-                                onRowUpdate: (newData, oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    if (oldData) {
-                                        setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data[data.indexOf(oldData)] = newData;
-                                        return { ...prevState, data };
-                                        });
-                                    }
-                                    }, 600);
-                                }),
-                                onRowDelete: (oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.splice(data.indexOf(oldData), 1);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                            }}
-                        />
+                        <DashboardTable col={comonscol} data={data} />
                     </Grid>
                 </Grid>
             </div>

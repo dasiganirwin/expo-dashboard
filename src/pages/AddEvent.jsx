@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
+import DashboardTable from "../components/DashboardTable";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -64,35 +66,33 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  
+  const comonscol = [
+    { title: "Event", field: "name" },
+    { title: "Event Description", field: "short_description" },
+    { title: "Start", field: "start_at" },
+    { title: "End", field: "end_at" },
+    { title: "Small logo URL", field: "small_logo_image_url" },
+    { title: "Big Logo URL", field: "big_logo_image_url" },
+    { title: "Icon URL", field: "icon_image_url" },
+    { title: "Intro Video URL", field: "intro_video_url" },
+    { title: "Cover Image URL", field: "cover_image_url" },
+    { title: "Category", field: "category" },
+    { title: "Status", field: "status" },
+    ];
 
 function AddEvent() {
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
 
-    const [state, setState] = React.useState({
-        columns: [
-          { title: 'Event', field: 'event' },
-          { title: 'Event Description', field: 'eventdescription' },
-          { title: 'Event Month', field: 'eventmonth', lookup: { 1: 'January', 2: 'February'}},
-          { title: 'Event Year', field: 'eventyear' },
-          { title: 'Logo URL', field: 'logourl' },
-          { title: 'Cover Photo URL', field: 'coverphotourl' },
-          { title: 'Video Event URL', field: 'videoeventurl' },
-          
-        ],
-        data: [
-          { 
-            event: 'Builvex', 
-            eventdescription: 'test' ,
-            eventmonth: 1,
-            eventyear: '2021',
-            logourl: 'url here',
-            coverphotourl: 'url here',
-            videoeventurl: 'url here',
-        }
-        ],
-      });
+    const [data, setData] = React.useState([])
+
+    React.useEffect(() => {
+        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/event/")
+          .then(res => res.json())
+          .then(res => setData(res))
+          .then(json => console.log(json))
+          .catch(err => console.log(err.message))
+      }, [])
 
   
     const handleChange = (event) => {
@@ -113,48 +113,7 @@ function AddEvent() {
                     <Grid item xs={12} md={12}>
                         <div>
                             <Paper className={classes.paperDetails}>
-                            <MaterialTable
-                            title="Events"
-                            columns={state.columns}
-                            data={state.data}
-                            editable={{
-                                onRowAdd: (newData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.push(newData);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                                onRowUpdate: (newData, oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    if (oldData) {
-                                        setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data[data.indexOf(oldData)] = newData;
-                                        return { ...prevState, data };
-                                        });
-                                    }
-                                    }, 600);
-                                }),
-                                onRowDelete: (oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.splice(data.indexOf(oldData), 1);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                            }}
-                        />
+                                <DashboardTable col={comonscol} data={data} />
                             </Paper>     
                         </div>
                     </Grid>

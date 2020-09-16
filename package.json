@@ -9,6 +9,7 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "4.9.1",
     "@material-ui/system": "4.9.14",
+    "axios": "^0.20.0",
     "bootstrap": "4.5.2",
     "material-table": "^1.69.0",
     "mobx": "^5.15.6",
@@ -19,6 +20,8 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "5.2.0",
     "react-scripts": "^3.0.1",
+    "react-validation": "^3.0.7",
+    "validator": "^13.1.1",
     "webfontloader": "^1.6.28",
     "yarn": "^1.22.5"
   },

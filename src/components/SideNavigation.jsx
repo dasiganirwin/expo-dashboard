@@ -69,22 +69,18 @@ function SideNavigation() {
       </AccordionSummary>
       <AccordionDetails>
         <List component="nav" className={classes.root} aria-label="mailbox folders">
-          <Link to="/addexhibitor">
-            <ListItem button>
-              <ListItemText primary="Add Exhibitor" />
-            </ListItem>
+        <Link to="/listexhibitors">
+          <ListItem button>
+            <ListItemText primary="Exhibitors" />
+          </ListItem>
           </Link>
           <Divider />
           <Link to="/addproduct">
           <ListItem button divider>
-            <ListItemText primary="Add Products" />
+            <ListItemText primary="Products" />
           </ListItem>
           </Link>
-          <Link to="/listexhibitors">
-          <ListItem button>
-            <ListItemText primary="List of Exhibitors" />
-          </ListItem>
-          </Link>
+          
           <Divider light />
         </List>
       </AccordionDetails>
@@ -101,7 +97,7 @@ function SideNavigation() {
       <List component="nav" className={classes.root} aria-label="mailbox folders">
         <Link to="/addevent">
           <ListItem button>
-          <ListItemText primary="Add Event" />
+          <ListItemText primary="Event" />
           </ListItem>
         </Link>
         <Divider />
@@ -118,15 +114,10 @@ function SideNavigation() {
       </AccordionSummary>
       <AccordionDetails>
         <List component="nav" className={classes.root} aria-label="mailbox folders">
-          <Link to="/adduserinfo"> 
-            <ListItem button>
-            <ListItemText primary="Add User Information" />
-            </ListItem>
-          </Link> 
           <Divider />
           <Link to="/listofusers"> 
             <ListItem button divider>
-            <ListItemText primary="View list of Users" />
+            <ListItemText primary="Users" />
             </ListItem>
           </Link>
         </List>

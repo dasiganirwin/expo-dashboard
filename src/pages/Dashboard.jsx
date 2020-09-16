@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SideNavigation from "../components/SideNavigation";
 import Header from "../components/Header";
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
+import axios from 'axios';
+import DashboardTable from "../components/DashboardTable";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -38,31 +40,28 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   
+const comonscol = [
+    { title: "Exhibitor no.", field: "id" },
+    { title: "Exhibitor", field: "company_name" },
+    { title: "Exhibitor Type", field: "type" },
+    { title: "Live", field: "" },
+    ];
 
 function Dashboard() {
+    const [data, setData] = React.useState([])
+
+    React.useEffect(() => {
+        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/exhibitor/")
+          .then(res => res.json())
+          .then(res => setData(res))
+          .then(json => console.log(json))
+          .catch(err => console.log(err.message))
+      }, [])
+
+
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
-    const [state, setState] = React.useState({
-        columns: [
-          { title: 'Exhibitor No.', field: 'exhibitorno' },
-          { title: 'Exhibitor', field: 'exhibitor' },
-          { title: 'Exhibitor Type', field: 'exhibitortype', lookup: { 1: 'Major', 2: 'Minor' ,3: 'General'}, },
-          {
-            title: 'Live',
-            field: 'live',
-            lookup: { 34: 'Yes', 63: 'No' },
-          },
-        ],
-        data: [
-          { exhibitorno: 'Builvex-0001-2020', exhibitor: 'Makita', exhibitortype: 1, live: 63 },
-          {
-            exhibitorno: 'Builvex-0001-2020',
-            exhibitor: 'Black and Decker',
-            exhibitortype: 2,
-            live: 34,
-          },
-        ],
-      });
+    
   
     const handleChange = (event) => {
         setExpoevent(event.target.value);
@@ -82,7 +81,8 @@ function Dashboard() {
                     <div className="contentsContainer" >
                         <Grid container className={classes.grid} spacing={2}>
                             <Grid item xs={10} md={12}>
-                                <Paper className={classes.paper}>Dashboard</Paper>
+    <Paper className={classes.paper}>Dashboard</Paper>
+                                
                             </Grid>
                             <Grid item xs={6} md={6}>
                                 <div>
@@ -135,48 +135,7 @@ function Dashboard() {
                                 </Paper>
                             </Grid>
                             <Grid item xs={12} md={12}>
-                            <MaterialTable
-                                title="Details"
-                                columns={state.columns}
-                                data={state.data}
-                                editable={{
-                                    onRowAdd: (newData) =>
-                                    new Promise((resolve) => {
-                                        setTimeout(() => {
-                                        resolve();
-                                        setState((prevState) => {
-                                            const data = [...prevState.data];
-                                            data.push(newData);
-                                            return { ...prevState, data };
-                                        });
-                                        }, 600);
-                                    }),
-                                    onRowUpdate: (newData, oldData) =>
-                                    new Promise((resolve) => {
-                                        setTimeout(() => {
-                                        resolve();
-                                        if (oldData) {
-                                            setState((prevState) => {
-                                            const data = [...prevState.data];
-                                            data[data.indexOf(oldData)] = newData;
-                                            return { ...prevState, data };
-                                            });
-                                        }
-                                        }, 600);
-                                    }),
-                                    onRowDelete: (oldData) =>
-                                    new Promise((resolve) => {
-                                        setTimeout(() => {
-                                        resolve();
-                                        setState((prevState) => {
-                                            const data = [...prevState.data];
-                                            data.splice(data.indexOf(oldData), 1);
-                                            return { ...prevState, data };
-                                        });
-                                        }, 600);
-                                    }),
-                                }}
-                                />
+                                <DashboardTable col={comonscol} data={data} />
                             </Grid>
                         </Grid>
                     </div>

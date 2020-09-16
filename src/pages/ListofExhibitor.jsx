@@ -8,6 +8,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
+import DashboardTable from "../components/DashboardTable";
+
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -38,37 +41,27 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   
+const comonscol = [
+    { title: "Exhibitor no.", field: "id" },
+    { title: "Exhibitor", field: "company_name" },
+    { title: "Major", field: "" },
+    { title: "Minor", field: "" },
+    { title: "General", field: "" },
+    ];
 
 function ListifExhibitor() {
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
-    const [state, setState] = React.useState({
-        columns: [
-          { title: 'Exhibitor No.', field: 'Exhibitorno' },
-          { title: 'Exhibitor', field: 'exhibitor' },
-          { title: 'Major', field: 'major', lookup: { 1: 'Yes', 2: 'No'}},
-          { title: 'Minor', field: 'minor', lookup: { 1: 'Yes', 2: 'No'}},
-          { title: 'General', field: 'general', lookup: { 1: 'Yes', 2: 'No'}},
-         
-          
-        ],
-        data: [
-          { Exhibitorno: '111', 
-            exhibitor: 'Makita' ,
-            major: 1,
-            minor: 2,
-            general: 1,
-        },
-        { 
-            Exhibitorno: '2222', 
-            exhibitor: 'Black and Decker' ,
-            major: 2,
-            minor: 1,
-            general: 1,
-        },
-        ],
-      });
     
+    const [data, setData] = React.useState([])
+
+    React.useEffect(() => {
+        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/exhibitor/")
+          .then(res => res.json())
+          .then(res => setData(res))
+          .then(json => console.log(json))
+          .catch(err => console.log(err.message))
+      }, [])
   
     const handleChange = (event) => {
         setExpoevent(event.target.value);
@@ -86,8 +79,8 @@ function ListifExhibitor() {
                     <Grid item xs={3} md={3}/>
                     <Grid item xs={6} md={6}>
                         <div>
-                        <Paper className={classes.paperEvent}>
-                                <div className="event">
+                         {/*<Paper className={classes.paperEvent}>
+                               <div className="event">
                                     <FormControl variant="outlined" className={classes.formControl}>
                                         <InputLabel id="demo-simple-select-outlined-label">Event</InputLabel>
                                         <Select
@@ -119,55 +112,14 @@ function ListifExhibitor() {
                                         <MenuItem value={30}>2022</MenuItem>
                                         <MenuItem value={30}>2023</MenuItem>
                                         </Select>
-                                    </FormControl> 
+                                </FormControl> 
                                 </div> 
-                            </Paper>   
+                            </Paper> */}  
                         </div>
                     </Grid>
                     <Grid item xs={3} md={3}/>
                     <Grid item xs={12} md={12}>
-                        <MaterialTable
-                            title="Product Details"
-                            columns={state.columns}
-                            data={state.data}
-                            editable={{
-                                onRowAdd: (newData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.push(newData);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                                onRowUpdate: (newData, oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    if (oldData) {
-                                        setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data[data.indexOf(oldData)] = newData;
-                                        return { ...prevState, data };
-                                        });
-                                    }
-                                    }, 600);
-                                }),
-                                onRowDelete: (oldData) =>
-                                new Promise((resolve) => {
-                                    setTimeout(() => {
-                                    resolve();
-                                    setState((prevState) => {
-                                        const data = [...prevState.data];
-                                        data.splice(data.indexOf(oldData), 1);
-                                        return { ...prevState, data };
-                                    });
-                                    }, 600);
-                                }),
-                            }}
-                        />
+                        <DashboardTable col={comonscol} data={data} />
                     </Grid>
                 </Grid>
             </div>
