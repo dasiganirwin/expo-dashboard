@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import SideNavigation from "../components/SideNavigation";
 import Header from "../components/Header";
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,6 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Grid } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import DashboardTable from "../components/DashboardTable";
+import axios from 'axios';
+import authHeader from "../services/auth-header";
+import UserService from "../services/user.service";
+import Token from "../pages/Token";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -80,26 +84,43 @@ const useStyles = makeStyles((theme) => ({
     { title: "Status", field: "status" },
     ];
 
+
+  
+
 function AddEvent() {
     const classes = useStyles();
     const [expoevent, setExpoevent] = React.useState('');
 
     const [data, setData] = React.useState([])
 
-    React.useEffect(() => {
-        fetch("https://expo-ph.herokuapp.com/api/event/")
-          .then(res => res.json())
-          .then(res => setData(res))
-          .then(json => console.log(json))
-          .catch(err => console.log(err.message))
-      }, [])
+    const [content, setContent] = useState("");
 
+    
+
+    useEffect(() => {
+      UserService.getEvent().then(
+        (response) => {
+            setData(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
   
+          setContent(_content);
+        }
+      );
+    }, []);
+  
+    
     const handleChange = (event) => {
         setExpoevent(event.target.value);
 
-        
     };
+    const currentUser = UserService.getEvent();
     return (
         <div className="mainContainer">
             <div className="header">
@@ -109,6 +130,7 @@ function AddEvent() {
                     <Grid item xs={3} md={3}>
                         <div className="navContainer">
                             <SideNavigation />
+                            <Token />
                         </div>  
                     </Grid>
                     <Grid item xs={9} md={9}>

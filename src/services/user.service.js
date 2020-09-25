@@ -1,11 +1,11 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://expo-ph.herokuapp.com/api/";
+const API_URL = "http://expo-ph.herokuapp.com/api";
 
 
-const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
+const getEvent = () => {
+  return axios.get(API_URL + "/event/", { headers: authHeader() });
 };
 
 const getModeratorBoard = () => {
@@ -17,7 +17,7 @@ const getAdminBoard = () => {
 };
 
 export default {
-  getUserBoard,
+  getEvent,
   getModeratorBoard,
   getAdminBoard,
 };

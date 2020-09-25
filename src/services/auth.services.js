@@ -28,4 +28,5 @@ const getCurrentUser = () => {
 export default {
   login,
   logout,
+  
 };
