@@ -49,6 +49,7 @@ const DashboardTable = props => {
     {
       console.log(props.data)
     }
+    
       <MaterialTable
         title="Exhibitor"
         columns={gridData.columns}

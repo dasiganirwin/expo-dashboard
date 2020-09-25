@@ -8,6 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useHistory } from 'react-router-dom';
 
 const logoimg = "../images/Expo-logo-wh.png";
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
   const classes = useStyles();
- 
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -35,6 +36,7 @@ export default function MenuAppBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    history.push("/");
   };
 
   return (

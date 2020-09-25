@@ -87,7 +87,7 @@ function AddEvent() {
     const [data, setData] = React.useState([])
 
     React.useEffect(() => {
-        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/event/")
+        fetch("https://expo-ph.herokuapp.com/api/event/")
           .then(res => res.json())
           .then(res => setData(res))
           .then(json => console.log(json))

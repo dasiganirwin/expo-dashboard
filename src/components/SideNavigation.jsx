@@ -123,6 +123,9 @@ function SideNavigation() {
         </List>
       </AccordionDetails>
     </Accordion>
+    <Link to="/test">
+      <p>test</p>
+    </Link>
     
   </div>
   );

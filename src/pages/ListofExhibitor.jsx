@@ -56,7 +56,7 @@ function ListifExhibitor() {
     const [data, setData] = React.useState([])
 
     React.useEffect(() => {
-        fetch("https://cors-anywhere.herokuapp.com/https://expo-ph.herokuapp.com/api/exhibitor/")
+        fetch("https://expo-ph.herokuapp.com/api/exhibitor/")
           .then(res => res.json())
           .then(res => setData(res))
           .then(json => console.log(json))

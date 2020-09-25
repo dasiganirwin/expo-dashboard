@@ -1,4 +1,4 @@
-import React , { useState, useCallback } from 'react';
+import React , { useState, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -9,26 +9,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import CheckButton from "react-validation/build/button";
 
-const accessToken = '306e2c2a79e9042d88f29404c76dae6bfae1a4b0';
-const apiURL = 'https://expo-ph.herokuapp.com/api/';
+import Form from "react-validation/build/form";
+import AuthService from "../src/services/auth.services";
 
-const authAxios = axios.create({
-  baseURL: apiURL,
-  headers: {
-    authorization: `Bearer ${accessToken}`
-  } 
-})
-
-axios.interceptors.request.use(
-  config => {
-    config.headers.authorization = `Bearer ${accessToken}`;
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-)
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,25 +37,78 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SignIn() {
+
+
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+const Login = (props) => {
+  const form = useRef();
+  const checkBtn = useRef();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
+  };
+
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+
+
   const [users, setUsers ] = useState([]);
   const [requestError, setRequestError] = useState();
 
-  const fetchData = useCallback(async () => {
-    try {
-      // fetch and set users
-      const result = await authAxios.get(`/login `);
-      setUsers(result.data)
-    } catch (err) {
-      setRequestError(err.message);
-    }
-  });
+  
   
   const classes = useStyles();
 
   const history = useHistory();
+ 
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-  const handleClick = () => history.push('/dashboard');
+    setMessage("");
+    setLoading(true);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      AuthService.login(username, password).then(
+        () => {
+          props.history.push("/dashboard");
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
+        }
+      );
+    } else {
+      setLoading(false);
+    }
+  };
 
   const logoimg = './images/expo-png.png'
 
@@ -81,7 +119,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <Form className={classes.form} onSubmit={handleLogin} ref={form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -92,7 +130,9 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(event)=>{this.setState({email:event.target.value})}}
+            name="username"
+            value={username}
+            onChange={onChangeUsername}
           />
           <TextField
             variant="outlined"
@@ -104,23 +144,33 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(event)=>{this.setState({password:event.target.value})}}
+            name="password"
+            value={password}
+            onChange={onChangePassword}
           />
-          {/*}
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />*/}
+         
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleClick}
+            ref={checkBtn}
+            disabled={loading}
           >
+            {loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
             Sign In
           </Button>
+          {message && (
+            <div className="form-group">
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
@@ -129,11 +179,11 @@ export default function SignIn() {
             </Grid>
             {/*<Grid item>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"Create an Account"}
               </Link>
             </Grid>*/}
           </Grid>
-        </form>
+        </Form>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -155,3 +205,5 @@ function Copyright() {
     </Typography>
   );
 }
+
+export default Login;
