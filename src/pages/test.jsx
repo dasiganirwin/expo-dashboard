@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+
 import { forwardRef } from 'react';
 import Avatar from 'react-avatar';
 import Grid from '@material-ui/core/Grid'
