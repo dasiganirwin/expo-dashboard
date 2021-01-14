@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
+import UserService from "../services/user.service";
+import postServices from "../services/post.services";
 
 const DashboardTable = props => {
   const [gridData, setGridData] = useState({
@@ -22,17 +24,14 @@ const DashboardTable = props => {
       setGridData({ ...gridData, data, updatedAt, resolve });
     });
 
-  const onRowUpdate = (newData, oldData) =>
-    new Promise((resolve, reject) => {
-      // Copy current state data to a new array
-      const data = [...gridData.data];
-      // Get edited row index
-      const index = data.indexOf(oldData);
-      // replace old data
-      data[index] = newData;
-      // update state with the new array
-      const updatedAt = new Date();
-      setGridData({ ...gridData, data, updatedAt, resolve });
+  const onRowUpdate = (newData, oldData, resolve) =>
+  postServices.updateEvent()
+  .then(res => {
+    let dataToAdd = [...gridData];
+    dataToAdd.push(newData);
+    gridData(dataToAdd);
+    resolve()
+   
     });
 
   const onRowDelete = oldData =>
